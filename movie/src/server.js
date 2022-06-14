@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const config = require('./config');
 const APIError = require('./lib/errors/APIError');
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -22,6 +23,8 @@ if (!process.env.TEST) {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/', routes);
 
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => res.status(404).json({ error: 'Resource Not Found' }));

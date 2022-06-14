@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
 const config = require('./config');
 const APIError = require('./lib/errors/APIError');
 const routes = require('./routes');
+const apiDocumentation = require('../docs/apidocumentation');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -25,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', routes);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(apiDocumentation));
 
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => res.status(404).json({ error: 'Resource Not Found' }));

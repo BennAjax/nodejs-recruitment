@@ -1,5 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require('dotenv');
+
+// load env configuration as early as possible
+dotenv.config();
 const { authFactory, AuthError } = require("./auth");
 
 const PORT = 3000;

@@ -3,8 +3,8 @@ const Adaptor = require('./OmdbAdaptor');
 
 let scope;
 beforeAll(() => {
-  scope = nock('http://www.omdbapi.com') // TODO: add to env
-    .get('/?t=snake&apikey=731280a1')
+  scope = nock(process.env.OMDB_URL)
+    .get(`/?t=snake&apikey=${process.env.OMDB_API_KEY}`)
     .reply(200, {
       data: {
         Title: 'Snake Eyes',
@@ -45,7 +45,7 @@ describe('OMDB Adaptor', () => {
   describe('constructor', () => {
     test('should initialize object', () => {
       expect(Adaptor.client).toBeTruthy();
-      expect(Adaptor.client.defaults.baseURL).toEqual('http://www.omdbapi.com'); // TODO: Change this
+      expect(Adaptor.client.defaults.baseURL).toEqual(process.env.OMDB_URL);
     });
   });
 

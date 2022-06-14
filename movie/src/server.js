@@ -14,7 +14,6 @@ const app = express();
 app.use(helmet());
 
 // initialize mongodb connection with mongoose
-// TODO: use the logger instead of the debugger
 if (!process.env.TEST) {
   mongoose
     .connect(config.mongodb.dsn, config.mongodb.options)

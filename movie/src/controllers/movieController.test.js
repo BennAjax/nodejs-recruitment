@@ -38,7 +38,7 @@ describe('Routes and Movie Controller', () => {
         name: 'Thomas Hodge',
         role: type,
       },
-      'xxxxx', // TODO: fix this
+      process.env.JWT_SECRET,
       {
         issuer: 'https://www.netguru.com/',
         subject: `123`,

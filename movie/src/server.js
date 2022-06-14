@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 const config = require('./config');
+const APIError = require('./lib/errors/APIError');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -26,7 +27,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => res.status(404).json({ error: 'Resource Not Found' }));
 
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => res.status(500).json({ error: 'Internal Server Error' }));
+app.use((err, req, res, next) => {
+  if (err instanceof APIError) {
+    return res.status(err.status).json({ status: err.message });
+  }
+  return res.status(500).json({ error: 'Internal Server Error' });
+});
 
 const server = app.listen(PORT, () => {
   if (!process.env.TEST) console.log(`Server Running on Port ${PORT}`);

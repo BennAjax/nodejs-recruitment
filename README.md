@@ -1,6 +1,8 @@
 # Movie service
-- Auth Microservice
-- Movie Microservice
+[![movie-ci](https://github.com/BennAjax/nodejs-recruitment/actions/workflows/ci.yml/badge.svg)](https://github.com/BennAjax/nodejs-recruitment/actions/workflows/ci.yml)
+
+1. Auth Microservice 
+1. Movie Microservice
 
 
 ### Prerequisites
@@ -45,7 +47,7 @@ Visit &nbsp;`http://localhost:4000/docs` &nbsp; when the service is started
 To run tests, add .env from .env.example, install modules and  run the following command
 
 ```
-  npm run test
+  cd movie && npm run test
 ```
 
 &nbsp;

@@ -3,8 +3,6 @@ name: movie-ci
 on:
   push:
     branches: ['master']
-    paths:
-      - './**'
 
 env:
   JWT_SECRET: xxxxxx

@@ -1,0 +1,14 @@
+name: movie-ci
+
+on:
+  push:
+    branches: ['master']
+    paths:
+      - 'movie/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd movie && npm install && npm test

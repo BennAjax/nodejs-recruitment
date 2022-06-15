@@ -4,7 +4,14 @@ on:
   push:
     branches: ['master']
     paths:
-      - 'movie/**'
+      - './**'
+
+env:
+  JWT_SECRET: xxxxxx
+  PORT: 4000
+  MONGODB_URI: mongodb://mongo_db:27017
+  OMDB_URL:  http://www.omdbapi.com
+  OMDB_API_KEY: 731280a1
 
 jobs:
   build:

@@ -54,7 +54,7 @@ To run tests, add .env from .env.example, install modules and  run the following
 ### Improvements
 The following improvments could be made in a real-world scenerio
 
-- Develop API Gateway for microservice
+- API Gateway for microservice
 - Use Typescript
 - Use Clean Architecture (for easy scalibility)
 - Use pre commit hooks

@@ -56,6 +56,6 @@ The following improvments could be made in a real-world scenerio
 
 - API Gateway for microservice
 - Use Typescript
-- Use Clean Architecture (for easy scalibility)
+- Use Clean Architecture: Uncle Bob (for easy scalibility)
 - Use pre commit hooks
 

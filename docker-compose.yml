@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  auth:
+    image: node_base
+    build:
+      context: ./
+      target: node_base
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
+    volumes:
+      - .:/app/
+    restart: always
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+    command: >
+      sh -c "cd auth && npm install && npm start"
+    container_name: netguru_auth
+
+  movie:
+    image: node_base
+    build:
+      context: ./
+      target: node_base
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    expose:
+      - '4000'
+    volumes:
+      - .:/app/
+    restart: always
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo_db:27017
+      OMDB_URL:  http://www.omdbapi.com
+      OMDB_API_KEY: 731280a1
+    depends_on:
+      - mongo_db
+    command: >
+      sh -c "cd movie && npm install && npm start"
+    container_name: netguru_movie
+
+  mongo_db:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+    container_name: netguru_database
+
+volumes:
+  mongo_db: {}
+ 
